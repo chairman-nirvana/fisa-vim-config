@@ -232,8 +232,8 @@ nmap ,wR :RecurGrep <cword><CR>
 nmap ,wr :RecurGrepFast <cword><CR>
 
 " python-mode settings
-" don't show lint result every time we save a file
-let g:pymode_lint_write = 0
+" show lint result every time we save a file
+let g:pymode_lint_write = 1
 " run pep8+pyflakes+pylint validator with \8
 autocmd FileType python map <buffer> <leader>8 :PyLint<CR>
 " rules to ignore (example: "E501,W293")
@@ -269,6 +269,7 @@ endif
 
 " colors for gvim
 if has('gui_running')
+    set guifont=Monaco:h18
     colorscheme wombat
 endif
 
@@ -285,3 +286,34 @@ let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
 " to use fancy symbols for powerline, uncomment the following line and use a
 " patched font (more info on the README.rst)
 " let g:Powerline_symbols = 'fancy'
+
+
+
+
+
+
+
+
+
+" customized changes by chairman
+" 1) auto change current directory for an opened buffer
+    autocmd BufEnter * silent! lcd %:p:h
+" 2) auto save/load editing session
+    " auto save and load view state
+    set viewdir=$HOME/.vim/views/
+    autocmd BufWinLeave * mkview 
+    autocmd BufWinEnter * "silent loadview"
+    
+    " auto save and load session state
+    function! SaveSession()
+        execute 'mksession! $HOME/.vim/sessions/session.vim'
+    endfunction
+    
+    function! LoadSession()
+        if argc() == 0
+            execute 'source $HOME/.vim/sessions/session.vim'
+        endif  
+    endfunction
+    
+    autocmd VimEnter * call LoadSession()
+    autocmd VimLeave * call SaveSession()
