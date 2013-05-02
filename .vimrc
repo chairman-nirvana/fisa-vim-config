@@ -72,6 +72,8 @@ Bundle 'matchit.zip'
 Bundle 'Wombat'
 " Yank history navigation
 Bundle 'YankRing.vim'
+" molokai colorscheme
+Bundle 'tomasr/molokai'
 
 " Installing plugins the first time
 if iCanHazVundle == 0
@@ -270,7 +272,10 @@ endif
 " colors for gvim
 if has('gui_running')
     set guifont=Monaco:h18
-    colorscheme wombat
+    let g:molokai_original = 1
+    let g:rehash256 = 1
+    "colorscheme wombat
+    colorscheme molokai 
 endif
 
 " when scrolling, keep cursor 3 lines away from screen border
