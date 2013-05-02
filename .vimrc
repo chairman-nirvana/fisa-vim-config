@@ -322,3 +322,5 @@ let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
     
     autocmd VimEnter * call LoadSession()
     autocmd VimLeave * call SaveSession()
+" 3) ignore specified pyflake/pep8 warnings
+    let g:pymode_lint_ignore = "C901"
