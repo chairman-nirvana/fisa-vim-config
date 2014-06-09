@@ -88,6 +88,9 @@ Bundle 'YankRing.vim'
 " molokai colorscheme
 Bundle 'tomasr/molokai'
 
+" auto session support
+Bundle 'vim-scripts/sessionman.vim'
+
 " Installing plugins the first time
 if iCanHazVundle == 0
     echo "Installing Bundles, please ignore key map error messages"
@@ -320,22 +323,23 @@ let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
     autocmd BufEnter * silent! lcd %:p:h
 " 2) auto save/load editing session
     " auto save and load view state
-    set viewdir=$HOME/.vim/views/
-    autocmd BufWinLeave * mkview 
-    autocmd BufWinEnter * "silent loadview"
+    "set viewdir=$HOME/.vim/views/
+    "autocmd BufWinLeave * mkview 
+    "autocmd BufWinEnter * "silent loadview"
     
     " auto save and load session state
-    function! SaveSession()
-        execute 'mksession! $HOME/.vim/sessions/session.vim'
-    endfunction
+    "function! SaveSession()
+        "execute 'mksession! $HOME/.vim/sessions/session.vim'
+    "endfunction
     
-    function! LoadSession()
-        if argc() == 0
-            execute 'source $HOME/.vim/sessions/session.vim'
-        endif  
-    endfunction
+    "function! LoadSession()
+        "if argc() == 0
+            "execute 'source $HOME/.vim/sessions/session.vim'
+        "endif  
+    "endfunction
     
-    autocmd VimEnter * call LoadSession()
-    autocmd VimLeave * call SaveSession()
+    "autocmd VimEnter * call LoadSession()
+    "autocmd VimLeave * call SaveSession()
 " 3) ignore specified pyflake/pep8 warnings
-    let g:pymode_lint_ignore = "C901"
+    let g:pymode_lint_checker = "pyflakes,pep8"
+    "let g:pymode_lint_ignore = "C901"
